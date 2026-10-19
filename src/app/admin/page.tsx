@@ -23,6 +23,12 @@ export default function AdminPage() {
     setLoading(true);
     setMessage("");
 
+    
+    if (!supabase) {
+      setMessage("Supabase is not configured. Check your environment variables.");
+      return;
+    }
+
     const {
       data: { user },
       error: userError,
