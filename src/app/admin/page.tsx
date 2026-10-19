@@ -85,6 +85,11 @@ export default function AdminPage() {
     setWorkingId(applicantId);
     setMessage("");
 
+    if (!supabase) {
+      setMessage("Supabase is not configured. Check your environment variables.");
+      return;
+    }
+
     const { error } = await supabase.rpc("set_membership_status", {
       target_user_id: applicantId,
       new_status: newStatus,
