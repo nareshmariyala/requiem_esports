@@ -1,62 +1,235 @@
-import Link from "next/link";
 
-const stats = [
-  { label: "ACTIVE SQUADS", value: "03" },
-  { label: "GAMES PLAYED", value: "06" },
-  { label: "TOURNAMENT WINS", value: "12" },
-  { label: "CLAN MEMBERS", value: "48" },
-];
-const squads = [
-  { name: "Vanguard", game: "Valorant", tag: "COMPETITIVE", color: "from-violet-500/30" },
-  { name: "Dropzone", game: "BGMI", tag: "BATTLE ROYALE", color: "from-cyan-500/30" },
-  { name: "Nightfall", game: "Call of Duty", tag: "MULTIPLAYER", color: "from-orange-500/30" },
+import Link from "next/link";
+import CinematicIntro from "@/components/CinematicIntro";
+
+const games = [
+  {
+    name: "Call of Duty: Mobile",
+    platform: "MOBILE",
+    type: "Competitive FPS",
+    number: "01",
+  },
+  {
+    name: "Delta Force",
+    platform: "MOBILE / PC",
+    type: "Tactical Warfare",
+    number: "02",
+  },
+  {
+    name: "Counter-Strike 2",
+    platform: "PC",
+    type: "Competitive FPS",
+    number: "03",
+  },
+  {
+    name: "VALORANT",
+    platform: "PC",
+    type: "Tactical FPS",
+    number: "04",
+  },
 ];
 
 export default function Home() {
   return (
     <>
-      <section className="relative overflow-hidden border-b border-[#202a3b]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_25%,rgba(124,58,237,.22),transparent_45%),radial-gradient(ellipse_at_15%_80%,rgba(6,182,212,.10),transparent_35%)]" />
-        <div className="container relative grid min-h-[520px] items-center gap-12 py-20 md:grid-cols-[1.2fr_.8fr]">
+      <CinematicIntro />
+
+      {/* HERO */}
+      <section className="relative isolate overflow-hidden border-b border-violet-500/10">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_75%_30%,rgba(124,58,237,0.22),transparent_50%),radial-gradient(ellipse_at_10%_85%,rgba(76,29,149,0.12),transparent_45%)]" />
+
+        <div className="container relative flex min-h-[680px] flex-col justify-center py-24">
+          <p className="text-xs font-bold uppercase tracking-[0.35em] text-violet-400">
+            Requiem Esports · Mobile & PC Gaming
+          </p>
+
+          <h1 className="mt-8 max-w-5xl text-5xl font-black uppercase leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl">
+            Forged in
+            <br />
+            <span className="text-violet-400">
+              Darkness.
+            </span>
+            <br />
+            United by
+            <br />
+            Competition.
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-base leading-8 text-slate-400 sm:text-lg">
+            One clan. Multiple battlegrounds. From mobile
+            combat to competitive PC gaming, Requiem brings
+            players together to compete, improve, and build
+            a lasting gaming community.
+          </p>
+
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link href="/join" className="btn btn-primary">
+              Join Requiem ↗
+            </Link>
+
+            <Link href="/games" className="btn btn-secondary">
+              Explore Games
+            </Link>
+          </div>
+
+          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.3em] text-violet-300/60">
+            Enter the Requiem
+          </p>
+        </div>
+      </section>
+
+      {/* CLAN INTRODUCTION */}
+      <section className="container py-20 md:py-28">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <span className="pill">YOUR SQUAD. YOUR LEGACY.</span>
-            <h1 className="mt-6 max-w-3xl text-5xl font-black leading-[1.05] tracking-tight md:text-7xl">BUILT TO PLAY.<br /><span className="text-violet-400">BORN TO WIN.</span></h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 muted">A community for competitive players, late-night squads, and gamers who push each other to the next level.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/join" className="btn btn-primary">Request to join ↗</Link>
-              <Link href="/leaderboard" className="btn btn-secondary">View leaderboard</Link>
-            </div>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-violet-400">
+              Who We Are
+            </p>
+
+            <h2 className="mt-5 text-4xl font-black uppercase leading-tight md:text-5xl">
+              More Than
+              <br />
+              Just a Clan.
+            </h2>
           </div>
-          <div className="panel relative overflow-hidden p-6 md:p-8">
-            <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-violet-500/10 blur-3xl" />
-            <div className="flex items-center justify-between"><span className="text-sm font-bold tracking-widest text-slate-300">CLAN STATUS</span><span className="pill">RECRUITING</span></div>
-            <div className="mt-8 text-6xl font-black">N<span className="text-violet-400">/</span>X</div>
-            <p className="mt-2 text-xl font-bold">No player left behind.</p>
-            <p className="mt-2 text-sm leading-6 muted">Find your squad, enter tournaments, and build your reputation with every match.</p>
-            <div className="mt-8 grid grid-cols-2 gap-3">
-              {stats.map((s) => <div key={s.label} className="rounded-xl bg-[#0a101b] p-4"><div className="text-2xl font-black">{s.value}</div><div className="mt-1 text-[10px] tracking-widest muted">{s.label}</div></div>)}
-            </div>
-            <p className="mt-4 text-xs muted">Demo stats — replace these with your real clan data.</p>
+
+          <div>
+            <p className="text-lg leading-8 text-slate-300">
+              Requiem Esports is a gaming community built
+              around teamwork, dedication, and the thrill
+              of competition.
+            </p>
+
+            <p className="mt-5 leading-8 text-slate-400">
+              Whether you're pushing ranks, preparing for
+              tournaments, or simply looking for people
+              to game with, there's a place for you here.
+            </p>
+
+            <Link
+              href="/about"
+              className="mt-7 inline-block font-semibold text-violet-300 hover:text-white"
+            >
+              Discover Requiem ↗
+            </Link>
           </div>
         </div>
       </section>
-      <section className="container py-16">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div><p className="text-xs font-bold tracking-[.25em] text-violet-400">FIND YOUR PEOPLE</p><h2 className="mt-3 text-3xl font-black md:text-4xl">Meet the squads</h2></div>
-          <Link href="/games" className="text-sm text-violet-300 hover:text-white">Explore all games ↗</Link>
-        </div>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {squads.map((s, i) => <article key={s.name} className={`panel bg-gradient-to-br ${s.color} to-[#101622] p-6`}>
-            <div className="flex justify-between"><span className="pill">{s.tag}</span><span className="text-3xl font-black text-white/30">0{i + 1}</span></div>
-            <div className="mt-10 text-2xl font-black">{s.name}</div><p className="mt-2 muted">{s.game}</p>
-            <Link href="/join" className="mt-6 inline-block text-sm font-bold text-violet-300">Apply to squad ↗</Link>
-          </article>)}
+
+      {/* FEATURED GAMES */}
+      <section className="border-y border-violet-500/10 bg-[#0c0915] py-20">
+        <div className="container">
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-violet-400">
+                Our Battlegrounds
+              </p>
+
+              <h2 className="mt-4 text-4xl font-black uppercase md:text-5xl">
+                Choose Your Game.
+              </h2>
+            </div>
+
+            <Link
+              href="/games"
+              className="font-semibold text-violet-300 hover:text-white"
+            >
+              View All Games ↗
+            </Link>
+          </div>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {games.map((game) => (
+              <article
+                key={game.name}
+                className="group relative overflow-hidden rounded-2xl border border-violet-500/15 bg-gradient-to-br from-[#211536] via-[#141020] to-[#0b0913] p-7 transition duration-300 hover:-translate-y-1 hover:border-violet-400/50 md:p-9"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="rounded-full border border-violet-400/30 px-3 py-1 text-xs font-bold tracking-widest text-violet-300">
+                    {game.platform}
+                  </span>
+
+                  <span className="text-4xl font-black text-violet-400/20">
+                    {game.number}
+                  </span>
+                </div>
+
+                <div className="mt-16">
+                  <p className="text-xs uppercase tracking-[0.25em] text-slate-400">
+                    {game.type}
+                  </p>
+
+                  <h3 className="mt-3 text-2xl font-black uppercase text-white md:text-3xl">
+                    {game.name}
+                  </h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
-      <section className="container">
-        <div className="panel flex flex-col items-start justify-between gap-6 p-8 md:flex-row md:items-center md:p-10">
-          <div><p className="text-xs font-bold tracking-[.25em] text-violet-400">READY TO DROP IN?</p><h2 className="mt-3 text-2xl font-black md:text-3xl">Your next team starts here.</h2><p className="mt-2 muted">Create an account and request membership.</p></div>
-          <Link href="/join" className="btn btn-primary">Join the clan</Link>
+
+      {/* STEAM COMMUNITY */}
+      <section className="container py-20 md:py-28">
+        <div className="relative overflow-hidden rounded-3xl border border-violet-400/20 bg-gradient-to-br from-[#211238] via-[#130e22] to-[#090711] p-8 md:p-14">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-600/20 blur-3xl" />
+
+          <div className="relative max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-violet-300">
+              PC Gaming Community
+            </p>
+
+            <h2 className="mt-5 text-4xl font-black uppercase leading-tight md:text-5xl">
+              Your Games.
+              <br />
+              Your Community.
+            </h2>
+
+            <p className="mt-6 text-lg leading-8 text-slate-300">
+              Play on Steam? You're welcome at Requiem.
+              You don't need to compete professionally
+              or play only our featured games.
+            </p>
+
+            <p className="mt-4 leading-8 text-slate-400">
+              Connect with other PC gamers, discover
+              multiplayer experiences, and find people
+              who share your passion for gaming.
+            </p>
+
+            <Link
+              href="/join"
+              className="btn btn-primary mt-8 inline-flex"
+            >
+              Join the Community ↗
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CALL TO ACTION */}
+      <section className="border-t border-violet-500/10 bg-[#0c0915]">
+        <div className="container py-20 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-violet-400">
+            Your Story Starts Here
+          </p>
+
+          <h2 className="mx-auto mt-5 max-w-3xl text-4xl font-black uppercase leading-tight md:text-6xl">
+            Become Part of
+            <span className="text-violet-400"> Requiem.</span>
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-xl leading-8 text-slate-400">
+            Competitive player or casual gamer,
+            every journey begins with a community.
+          </p>
+
+          <Link
+            href="/join"
+            className="btn btn-primary mt-9 inline-flex"
+          >
+            Request Membership ↗
+          </Link>
         </div>
       </section>
     </>
