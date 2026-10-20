@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 const games = [
   {
@@ -11,6 +12,7 @@ const games = [
     description:
       "Precision, strategy, and teamwork. Coordinate with your squad and compete in intense tactical matches.",
     accent: "from-red-500/20",
+    image: "/images/games/valorant.webp",
   },
   {
     id: "codm",
@@ -21,6 +23,7 @@ const games = [
     description:
       "Fast-paced combat, coordinated squad play, and competitive multiplayer action.",
     accent: "from-orange-500/20",
+    image: "/images/games/codm.webp",
   },
   {
     id: "delta-force",
@@ -31,6 +34,7 @@ const games = [
     description:
       "Adapt to the battlefield, execute tactical operations, and work together to overcome every challenge.",
     accent: "from-emerald-500/20",
+    image: "/images/games/delta-force.webp",
   },
   {
     id: "counter-strike-2",
@@ -41,6 +45,7 @@ const games = [
     description:
       "Master communication, positioning, and precision in one of competitive gaming's most iconic shooters.",
     accent: "from-amber-500/20",
+    image: "/images/games/cs2.webp",
   },
 ];
 
@@ -90,15 +95,33 @@ export default function GamesPage() {
               key={game.id}
               className="group relative overflow-hidden rounded-2xl border border-violet-500/20 bg-[#100c1c] transition duration-300 hover:-translate-y-1 hover:border-violet-400/60"
             >
-              {/* DECORATIVE GAME BANNER */}
-              <div
-                className={`relative flex h-44 items-end overflow-hidden bg-gradient-to-br ${game.accent} via-[#171023] to-[#08060e] p-6`}
-              >
-                <span className="absolute right-5 top-1 text-[8rem] font-black leading-none text-white/[0.05]">
+              {/* CLICKABLE GAME CARD OVERLAY */}
+              <Link
+                href={`/games/${game.id}`}
+                aria-label={`Explore ${game.name}`}
+                className="absolute inset-0 z-10"
+              />
+
+              {/* CINEMATIC GAME BANNER */}
+              <div className="relative h-52 overflow-hidden sm:h-60">
+                <Image
+                  src={game.image}
+                  alt={`${game.name} game artwork`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition duration-700 group-hover:scale-110"
+                />
+
+                {/* Dark gradient for readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#100c1c] via-black/20 to-black/10" />
+
+                {/* Decorative number */}
+                <span className="absolute right-5 top-3 text-6xl font-black text-white/20">
                   {game.number}
                 </span>
 
-                <span className="relative rounded-full border border-white/15 bg-black/30 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white">
+                {/* Platform badge */}
+                <span className="absolute bottom-5 left-6 rounded-full border border-white/20 bg-black/50 px-4 py-2 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-sm">
                   {game.platform}
                 </span>
               </div>
@@ -123,10 +146,12 @@ export default function GamesPage() {
                   </span>
 
                   <Link
-                    href="/join"
-                    className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-violet-400 transition hover:text-violet-300"
+                    href={game.id === "codm" ? "/games/codm" : "/join"}
+                    className="relative z-20 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-violet-400 transition hover:text-violet-300"
                   >
-                    Join Community
+                    {game.id === "codm"
+                      ? "Explore Division"
+                      : "Join Community"}
                     <span aria-hidden="true">↗</span>
                   </Link>
                 </div>
