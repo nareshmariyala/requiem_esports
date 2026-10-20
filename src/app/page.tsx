@@ -2,7 +2,6 @@
 import Link from "next/link";
 import CinematicIntro from "@/components/CinematicIntro";
 import CinematicBackground from "@/components/CinematicBackground";
-import CinematicSound from "@/components/CinematicSound";
 
 const games = [
   {
@@ -77,9 +76,6 @@ export default function Home() {
           <p className="mt-16 text-xs font-semibold uppercase tracking-[0.3em] text-violet-300/60">
             Enter the Requiem
           </p>
-          <div className="mt-5">
-            <CinematicSound />
-          </div>
         </div>
       </section>
 

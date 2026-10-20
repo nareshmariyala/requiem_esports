@@ -2,30 +2,49 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function CinematicSound() {
+  const pathname = usePathname();
+
   const [enabled, setEnabled] = useState(false);
 
   const ambienceRef = useRef<HTMLAudioElement>(null);
   const thunderRef = useRef<HTMLAudioElement>(null);
-
   const enabledRef = useRef(false);
 
+  // Keep audio active only while on the homepage.
   useEffect(() => {
+    if (pathname !== "/") {
+      ambienceRef.current?.pause();
+      thunderRef.current?.pause();
+      return;
+    }
+
+    if (enabledRef.current && !document.hidden) {
+      void ambienceRef.current?.play().catch(() => {});
+    }
+  }, [pathname]);
+
+  // Synchronize thunder with the homepage lightning.
+  useEffect(() => {
+    if (pathname !== "/") return;
+
     const video = document.querySelector<HTMLVideoElement>(
       ".requiem-background-video"
     );
 
     if (!video) return;
 
-    let previousTime = 0;
-    let thunderPlayed = false;
+    let previousTime = video.currentTime;
+    let thunderPlayed = video.currentTime >= 4.7;
 
     function synchronizeThunder() {
       if (!video) return;
 
       const time = video.currentTime;
 
+      // Reset when the 10-second video loops.
       if (time < previousTime - 1) {
         thunderPlayed = false;
       }
@@ -34,6 +53,7 @@ export default function CinematicSound() {
 
       if (
         enabledRef.current &&
+        !document.hidden &&
         !thunderPlayed &&
         time >= 4.7 &&
         time < 6
@@ -57,7 +77,7 @@ export default function CinematicSound() {
         synchronizeThunder
       );
     };
-  }, []);
+  }, [pathname]);
 
   async function toggleSound() {
     const nextEnabled = !enabledRef.current;
@@ -74,13 +94,17 @@ export default function CinematicSound() {
       return;
     }
 
-    if (thunder) {
-        thunder.volume = 0.85;
-        }
-
     if (ambience) {
       ambience.volume = 0.55;
+    }
 
+    if (thunder) {
+      thunder.volume = 0.85;
+    }
+
+    // Remember the toggle state while navigating,
+    // but only play audio on the homepage.
+    if (pathname === "/" && ambience) {
       try {
         await ambience.play();
       } catch {
@@ -95,7 +119,10 @@ export default function CinematicSound() {
       if (document.hidden) {
         ambienceRef.current?.pause();
         thunderRef.current?.pause();
-      } else if (enabledRef.current) {
+      } else if (
+        enabledRef.current &&
+        window.location.pathname === "/"
+      ) {
         void ambienceRef.current?.play().catch(() => {});
       }
     }
@@ -133,16 +160,20 @@ export default function CinematicSound() {
         onClick={toggleSound}
         aria-label={
           enabled
-            ? "Mute cinematic sounds"
-            : "Enable cinematic sounds"
+            ? "Mute cinematic sound"
+            : "Enable cinematic sound"
         }
         aria-pressed={enabled}
-        className="inline-flex items-center gap-2 rounded-lg border border-violet-400/40 bg-black/65 px-4 py-2.5 text-xs font-bold tracking-wider text-violet-200 backdrop-blur-md transition hover:border-violet-300 hover:bg-violet-900/50"
+        title={
+          enabled
+            ? "Mute cinematic sound"
+            : "Enable cinematic sound"
+        }
+        className="flex h-10 w-10 items-center justify-center rounded-lg border border-violet-500/40 bg-violet-950/30 text-lg transition hover:border-violet-400 hover:bg-violet-900/50"
       >
         <span aria-hidden="true">
           {enabled ? "🔊" : "🔇"}
         </span>
-        {enabled ? "SOUND ON" : "ENABLE SOUND"}
       </button>
     </>
   );

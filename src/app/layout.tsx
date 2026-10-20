@@ -8,6 +8,7 @@ import {
   Inter,
 } from "next/font/google";
 import "./globals.css";
+import CinematicSound from "@/components/CinematicSound";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -76,58 +77,50 @@ export default function RootLayout({
                 <span className="font-cinzel text-[10px] font-bold tracking-[0.3em] text-violet-400 sm:text-xs">
                   ESPORTS
                 </span>
+              <CinematicSound />
               </div>
             </Link>
 
-            {/* NAVIGATION */}
-            <nav
-              aria-label="Main navigation"
-              className="font-cinzel flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wide text-slate-300 sm:gap-5"
-            >
-              <Link
-                href="/"
-                className="transition hover:text-violet-300"
-              >
-                Home
-              </Link>
 
-              <Link
-                href="/about"
-                className="transition hover:text-violet-300"
+            {/* NAVIGATION + SOUND CONTROL */}
+            <div className="flex flex-wrap items-center justify-end gap-3">
+              <nav
+                aria-label="Main navigation"
+                className="font-cinzel flex flex-wrap items-center gap-4 text-xs font-semibold tracking-wide text-slate-300 sm:gap-5"
               >
-                About
-              </Link>
+                <Link href="/" className="transition hover:text-violet-300">
+                  Home
+                </Link>
 
-              <Link
-                href="/games"
-                className="transition hover:text-violet-300"
-              >
-                Games
-              </Link>
+                <Link href="/about" className="transition hover:text-violet-300">
+                  About
+                </Link>
 
-              <Link
-                href="/leaderboard"
-                className="transition hover:text-violet-300"
-              >
-                Leaderboard
-              </Link>
+                <Link href="/games" className="transition hover:text-violet-300">
+                  Games
+                </Link>
 
-              <Link
-                href="/join"
-                className="transition hover:text-violet-300"
-              >
-                Join Clan
-              </Link>
+                <Link
+                  href="/leaderboard"
+                  className="transition hover:text-violet-300"
+                >
+                  Leaderboard
+                </Link>
 
-              <Link
-                href="/login"
-                className="btn btn-secondary"
-              >
-                Member Login
-              </Link>
-            </nav>
+                <Link href="/join" className="transition hover:text-violet-300">
+                  Join Clan
+                </Link>
+
+                <Link href="/login" className="btn btn-secondary">
+                  Member Login
+                </Link>
+              </nav>
+
+              <CinematicSound />
+            </div>
           </div>
         </header>
+
 
         {/* PAGE CONTENT */}
         {children}
@@ -139,7 +132,7 @@ export default function RootLayout({
               href="/"
               className="flex items-center gap-3"
             >
-              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full border border-violet-500/20">
+              <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl border border-violet-500/40 bg-black shadow-[0_0_18px_rgba(139,92,246,0.2)]">
                 <Image
                   src="/images/branding/requiem-logo.webp"
                   alt="Requiem Esports logo"

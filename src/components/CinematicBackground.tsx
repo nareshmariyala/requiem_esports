@@ -11,7 +11,7 @@ export default function CinematicBackground() {
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
+        className="requiem-background-video absolute inset-0 h-full w-full object-cover"
       >
         <source
           src="/videos/requiem-background.mp4"
