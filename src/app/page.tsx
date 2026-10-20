@@ -1,6 +1,8 @@
 
 import Link from "next/link";
 import CinematicIntro from "@/components/CinematicIntro";
+import CinematicBackground from "@/components/CinematicBackground";
+import CinematicSound from "@/components/CinematicSound";
 
 const games = [
   {
@@ -36,9 +38,9 @@ export default function Home() {
 
       {/* HERO */}
       <section className="relative isolate overflow-hidden border-b border-violet-500/10">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_75%_30%,rgba(124,58,237,0.22),transparent_50%),radial-gradient(ellipse_at_10%_85%,rgba(76,29,149,0.12),transparent_45%)]" />
+        <CinematicBackground />
 
-        <div className="container relative flex min-h-[680px] flex-col justify-center py-24">
+        <div className="container relative z-10 flex min-h-[680px] flex-col justify-center py-24">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-violet-400">
             Requiem Esports · Mobile & PC Gaming
           </p>
@@ -75,6 +77,9 @@ export default function Home() {
           <p className="mt-16 text-xs font-semibold uppercase tracking-[0.3em] text-violet-300/60">
             Enter the Requiem
           </p>
+          <div className="mt-5">
+            <CinematicSound />
+          </div>
         </div>
       </section>
 
