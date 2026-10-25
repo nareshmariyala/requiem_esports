@@ -77,7 +77,6 @@ export default function RootLayout({
                 <span className="font-cinzel text-[10px] font-bold tracking-[0.3em] text-violet-400 sm:text-xs">
                   ESPORTS
                 </span>
-              <CinematicSound />
               </div>
             </Link>
 

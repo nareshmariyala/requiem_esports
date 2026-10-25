@@ -39,12 +39,12 @@ export default function Home() {
       <section className="relative isolate overflow-hidden border-b border-violet-500/10">
         <CinematicBackground />
 
-        <div className="container relative z-10 flex min-h-[680px] flex-col justify-center py-24">
+        <div className="container relative z-10 flex min-h-[560px] flex-col justify-center py-14 sm:min-h-[680px] sm:py-20">
           <p className="text-xs font-bold uppercase tracking-[0.35em] text-violet-400">
             Requiem Esports · Mobile & PC Gaming
           </p>
 
-          <h1 className="mt-8 max-w-5xl text-5xl font-black uppercase leading-[1.05] tracking-tight sm:text-6xl lg:text-8xl">
+          <h1 className="mt-7 max-w-5xl text-[clamp(2rem,8.5vw,3.5rem)] font-black uppercase leading-[1.12] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
             Forged in
             <br />
             <span className="text-violet-400">
@@ -72,10 +72,6 @@ export default function Home() {
               Explore Games
             </Link>
           </div>
-
-          <p className="mt-16 text-xs font-semibold uppercase tracking-[0.3em] text-violet-300/60">
-            Enter the Requiem
-          </p>
         </div>
       </section>
 
